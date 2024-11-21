@@ -22,9 +22,9 @@
 #define BMP280_REG_TEMPERATURE_MSB 0xFA
 
 // Function prototypes
-int write_register(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t data);
-int read_register(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data);
-int read_registers(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, size_t len);
+int write_register_BMP(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t data);
+int read_register_BMP(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data);
+int read_registers_BMP(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, size_t len);
 void bmp280_init(const struct device *i2c_dev);
 void read_bmp280_data(const struct device *i2c_dev);
 

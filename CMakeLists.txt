@@ -3,4 +3,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(LUNARVITALS-SENSORS)
 
-target_sources(app PRIVATE src/main.c src/LSM9DS1.c)
+target_sources(app PRIVATE src/main.c src/LSM9DS1.c src/BMP280.c)

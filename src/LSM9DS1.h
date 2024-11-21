@@ -17,9 +17,9 @@
 #define OUT_X_L_M  0x28 // Magnetometer X-axis output low byte
 
 // Function prototypes
-int write_register(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t data);
-int read_register(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data);
-int read_registers(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, size_t len);
+int write_register_LSM(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t data);
+int read_register_LSM(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data);
+int read_registers_LSM(const struct device *i2c_dev, uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, size_t len);
 void lsm9ds1_init(const struct device *i2c_dev);
 void read_lsm9ds1_data(const struct device *i2c_dev);
 
