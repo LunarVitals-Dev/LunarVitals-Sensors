@@ -2,6 +2,7 @@
 #include <zephyr/drivers/i2c.h>
 #include <zephyr/sys/printk.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define I2C_NODE DT_NODELABEL(i2c0) // I2C instance
 #define MPU6050_ADDR 0x68          // Default I2C address of MPU6050
@@ -62,21 +63,14 @@ void read_mpu6050_data(const struct device *i2c_dev) {
         accel_z = (int16_t)((data[4] << 8) | data[5]);
 
         // Print raw accelerometer values for debugging
-        printk("Raw Accelerometer (int16_t): X=%d, Y=%d, Z=%d\n", accel_x, accel_y, accel_z);
+        //printk("Raw Accelerometer (int16_t): X=%d, Y=%d, Z=%d\n", accel_x, accel_y, accel_z);
 
-        // Convert to 'g' values (assuming ±2g range, sensitivity = 16384 for 2g)
-        int16_t accel_x_int = accel_x / 16384; // Integer part
-        int16_t accel_x_dec = abs(accel_x % 16384); // Decimal part (absolute value)
-        int16_t accel_y_int = accel_y / 16384;
-        int16_t accel_y_dec = abs(accel_y % 16384);
-        int16_t accel_z_int = accel_z / 16384;
-        int16_t accel_z_dec = abs(accel_z % 16384);
+        float accel_x_float = (float)accel_x / 16384.0f; // Convert to float
+        float accel_y_float = (float)accel_y / 16384.0f;
+        float accel_z_float = (float)accel_z / 16384.0f;
 
-        // Print the scaled 'g' values with sign and decimal separation
-        printk("Accelerometer (g): X=%s%d.%02d, Y=%s%d.%02d, Z=%s%d.%02d\n", 
-               (accel_x_int < 0 ? "-" : ""), abs(accel_x_int), accel_x_dec, 
-               (accel_y_int < 0 ? "-" : ""), abs(accel_y_int), accel_y_dec, 
-               (accel_z_int < 0 ? "-" : ""), abs(accel_z_int), accel_z_dec);
+        printk("Accelerometer (g): X=%.4f, Y=%.4f, Z=%.4f\n", accel_x_float, accel_y_float, accel_z_float);
+
     } else {
         printk("Failed to read accelerometer data\n");
     }
@@ -88,21 +82,13 @@ void read_mpu6050_data(const struct device *i2c_dev) {
         gyro_z = (int16_t)((data[4] << 8) | data[5]);
 
         // Print raw gyroscope values for debugging
-        printk("Raw Gyroscope (int16_t): X=%d, Y=%d, Z=%d\n", gyro_x, gyro_y, gyro_z);
+        //printk("Raw Gyroscope (int16_t): X=%d, Y=%d, Z=%d\n", gyro_x, gyro_y, gyro_z);
+        float gyro_x_float = (float)gyro_x / 16384.0f; // Convert to float
+        float gyro_y_float = (float)gyro_y / 16384.0f;
+        float gyro_z_float = (float)gyro_z / 16384.0f;
 
-        // Convert to °/s (assuming ±250°/s range, sensitivity = 131 for 250°/s)
-        int16_t gyro_x_int = gyro_x / 131; // Integer part
-        int16_t gyro_x_dec = abs(gyro_x % 131); // Decimal part (absolute value)
-        int16_t gyro_y_int = gyro_y / 131;
-        int16_t gyro_y_dec = abs(gyro_y % 131);
-        int16_t gyro_z_int = gyro_z / 131;
-        int16_t gyro_z_dec = abs(gyro_z % 131);
+        printk("Gyroscope (°/s): X=%.4f, Y=%.4f, Z=%.4f\n", gyro_x_float, gyro_y_float, gyro_z_float);
 
-        // Print the scaled gyro values with sign and decimal separation
-        printk("Gyroscope (°/s): X=%s%d.%02d, Y=%s%d.%02d, Z=%s%d.%02d\n", 
-               (gyro_x_int < 0 ? "-" : ""), abs(gyro_x_int), gyro_x_dec, 
-               (gyro_y_int < 0 ? "-" : ""), abs(gyro_y_int), gyro_y_dec, 
-               (gyro_z_int < 0 ? "-" : ""), abs(gyro_z_int), gyro_z_dec);
     } else {
         printk("Failed to read gyroscope data\n");
     }
@@ -123,6 +109,6 @@ void main(void) {
 
     while (1) {
         read_mpu6050_data(i2c_dev);
-        k_msleep(1000);  // Delay for 1 second
+        k_msleep(3000);  // Delay for 1 second
     }
 }
