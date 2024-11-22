@@ -65,12 +65,18 @@ void read_mpu6050_data(const struct device *i2c_dev) {
         printk("Raw Accelerometer (int16_t): X=%d, Y=%d, Z=%d\n", accel_x, accel_y, accel_z);
 
         // Convert to 'g' values (assuming ±2g range, sensitivity = 16384 for 2g)
-        float accel_x_g = accel_x / 16384.0f;
-        float accel_y_g = accel_y / 16384.0f;
-        float accel_z_g = accel_z / 16384.0f;
+        int16_t accel_x_int = accel_x / 16384; // Integer part
+        int16_t accel_x_dec = abs(accel_x % 16384); // Decimal part (absolute value)
+        int16_t accel_y_int = accel_y / 16384;
+        int16_t accel_y_dec = abs(accel_y % 16384);
+        int16_t accel_z_int = accel_z / 16384;
+        int16_t accel_z_dec = abs(accel_z % 16384);
 
-        // Print the scaled 'g' values with 3 decimal places
-        printk("Accelerometer (g): X=%.3f, Y=%.3f, Z=%.3f\n", accel_x_g, accel_y_g, accel_z_g);
+        // Print the scaled 'g' values with sign and decimal separation
+        printk("Accelerometer (g): X=%s%d.%02d, Y=%s%d.%02d, Z=%s%d.%02d\n", 
+               (accel_x_int < 0 ? "-" : ""), abs(accel_x_int), accel_x_dec, 
+               (accel_y_int < 0 ? "-" : ""), abs(accel_y_int), accel_y_dec, 
+               (accel_z_int < 0 ? "-" : ""), abs(accel_z_int), accel_z_dec);
     } else {
         printk("Failed to read accelerometer data\n");
     }
@@ -85,12 +91,18 @@ void read_mpu6050_data(const struct device *i2c_dev) {
         printk("Raw Gyroscope (int16_t): X=%d, Y=%d, Z=%d\n", gyro_x, gyro_y, gyro_z);
 
         // Convert to °/s (assuming ±250°/s range, sensitivity = 131 for 250°/s)
-        float gyro_x_dps = gyro_x / 131.0f;
-        float gyro_y_dps = gyro_y / 131.0f;
-        float gyro_z_dps = gyro_z / 131.0f;
+        int16_t gyro_x_int = gyro_x / 131; // Integer part
+        int16_t gyro_x_dec = abs(gyro_x % 131); // Decimal part (absolute value)
+        int16_t gyro_y_int = gyro_y / 131;
+        int16_t gyro_y_dec = abs(gyro_y % 131);
+        int16_t gyro_z_int = gyro_z / 131;
+        int16_t gyro_z_dec = abs(gyro_z % 131);
 
-        // Print the scaled gyro values with 3 decimal places
-        printk("Gyroscope (°/s): X=%.3f, Y=%.3f, Z=%.3f\n", gyro_x_dps, gyro_y_dps, gyro_z_dps);
+        // Print the scaled gyro values with sign and decimal separation
+        printk("Gyroscope (°/s): X=%s%d.%02d, Y=%s%d.%02d, Z=%s%d.%02d\n", 
+               (gyro_x_int < 0 ? "-" : ""), abs(gyro_x_int), gyro_x_dec, 
+               (gyro_y_int < 0 ? "-" : ""), abs(gyro_y_int), gyro_y_dec, 
+               (gyro_z_int < 0 ? "-" : ""), abs(gyro_z_int), gyro_z_dec);
     } else {
         printk("Failed to read gyroscope data\n");
     }
