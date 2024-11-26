@@ -83,9 +83,9 @@ void read_mpu6050_data(const struct device *i2c_dev) {
 
         // Print raw gyroscope values for debugging
         //printk("Raw Gyroscope (int16_t): X=%d, Y=%d, Z=%d\n", gyro_x, gyro_y, gyro_z);
-        float gyro_x_float = (float)gyro_x / 16384.0f; // Convert to float
-        float gyro_y_float = (float)gyro_y / 16384.0f;
-        float gyro_z_float = (float)gyro_z / 16384.0f;
+        float gyro_x_float = (float)gyro_x / 131.0f; // Convert to float
+        float gyro_y_float = (float)gyro_y / 131.0f;
+        float gyro_z_float = (float)gyro_z / 131.0f;
 
         printk("Gyroscope (°/s): X=%.4f, Y=%.4f, Z=%.4f\n", gyro_x_float, gyro_y_float, gyro_z_float);
 
