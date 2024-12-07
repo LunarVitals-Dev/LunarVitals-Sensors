@@ -7,6 +7,15 @@
 #define I2C_NODE DT_NODELABEL(i2c0)
 #define BMP280_ADDR 0x76  // Adjust to 0x77 if SDO pin is high
 
+// HOW TO CONNECT: (BMP --> Nordic)
+// SCK --> Pin 27
+// SDI --> Pin 26
+// SDO --> GND (for I2C Address 0x76)    *VDO --> VDD gives I2C address 0x77*
+// CS --> VDD
+// 3Vo --> VDD
+// GND -->
+
+
 // BMP280 Register Addresses
 #define BMP280_REG_CALIB_START    0x88
 #define BMP280_REG_CHIPID         0xD0
@@ -92,7 +101,8 @@ void read_bmp280_data(const struct device *i2c_dev) {
     int32_t var1 = ((((adc_T >> 3) - ((int32_t)dig_T1 << 1))) * ((int32_t)dig_T2)) >> 11;
     int32_t var2 = (((((adc_T >> 4) - ((int32_t)dig_T1)) * ((adc_T >> 4) - ((int32_t)dig_T1))) >> 12) * ((int32_t)dig_T3)) >> 14;
     t_fine = var1 + var2;
-    float temperature = ((t_fine * 5 + 128) >> 8) / 100.0f;
+    float celsius = ((t_fine * 5 + 128) >> 8) / 100.0f;
+    float fahrenheit =(celsius *  1.8) + 32.0;
 
     // Pressure compensation
     int64_t var1_p = ((int64_t)t_fine) - 128000;
@@ -112,5 +122,5 @@ void read_bmp280_data(const struct device *i2c_dev) {
 
     float pressure = p / 25600.0f;  // Convert to hPa
 
-    printk("Temperature: %.2f °C, Pressure: %.2f hPa\n", temperature, pressure);
+    printk("Temperature: %.2f °C / %.2f °F, Pressure: %.2f hPa\n", celsius, fahrenheit, pressure);
 }
