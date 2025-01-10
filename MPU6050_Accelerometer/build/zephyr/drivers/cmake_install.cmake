@@ -69,6 +69,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/adc/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/clock_control/cmake_install.cmake")
 endif()
 

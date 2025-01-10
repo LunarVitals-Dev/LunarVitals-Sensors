@@ -1,7 +1,7 @@
 {
     "__net_socket": [
-        "net_context",
         "modem_socket",
+        "net_context",
         "dispatcher_context",
         "spair",
         "net_mgmt_socket",
@@ -9,11 +9,11 @@
         "websocket_context"
     ],
     "__subsystem": [
+        "adc_driver_api",
         "gpio_driver_api",
         "i2c_driver_api",
         "uart_driver_api",
         "crypto_driver_api",
-        "adc_driver_api",
         "auxdisplay_driver_api",
         "bbram_driver_api",
         "can_driver_api",

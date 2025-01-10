@@ -152,6 +152,9 @@ C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/usb/common/nrf_usbd_common/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/usb_c/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/usb_c/CMakeFiles/rebuild_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/adc/CMakeFiles/drivers__adc.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/adc/CMakeFiles/edit_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/adc/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/clock_control/CMakeFiles/drivers__clock_control.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/clock_control/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/clock_control/CMakeFiles/rebuild_cache.dir
