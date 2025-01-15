@@ -21,9 +21,9 @@ int main(void) {
     bmp280_init(i2c_dev);
 
     while (1) {
-        // read_lsm9ds1_data(i2c_dev);
+        read_lsm9ds1_data(i2c_dev);
         read_bmp280_data(i2c_dev);
-        k_sleep(K_MSEC(3000));
+        k_sleep(K_MSEC(2000));
     }
 
     return -1;

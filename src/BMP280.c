@@ -4,17 +4,17 @@
 #include <zephyr/kernel.h>
 #include <stdint.h>
 
-#define I2C_NODE DT_NODELABEL(i2c0)
-#define BMP280_ADDR 0x76  // Adjust to 0x77 if SDO pin is high
-
 // HOW TO CONNECT: (BMP --> Nordic)
 // SCK --> Pin 27
 // SDI --> Pin 26
-// SDO --> GND (for I2C Address 0x76)    *VDO --> VDD gives I2C address 0x77*
+// SDO --> GND (for I2C Address 0x76)    *VDO --> VDD (makes I2C address 0x77)*
 // CS --> VDD
 // 3Vo --> VDD
-// GND -->
+// GND --> GND
 
+
+#define I2C_NODE DT_NODELABEL(i2c0)
+#define BMP280_ADDR 0x76  // Adjust to 0x77 if SDO pin is high
 
 // BMP280 Register Addresses
 #define BMP280_REG_CALIB_START    0x88
