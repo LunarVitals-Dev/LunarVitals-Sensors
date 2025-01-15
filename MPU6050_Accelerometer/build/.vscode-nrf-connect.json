@@ -1,5 +1,10 @@
 {
+  "toolchainPath": "c:\\ncs\\toolchains\\ce3b5ff664",
+  "sdkPath": "c:\\ncs\\v2.6.1",
   "board": "nrf52840dk_nrf52840",
+  "boardDirs": [
+    "c:/ncs/v2.6.1/zephyr/boards/arm/nrf52840dk_nrf52840"
+  ],
   "boardRevision": "",
   "boardDir": "c:/ncs/v2.6.1/zephyr/boards/arm/nrf52840dk_nrf52840",
   "shouldBuild": true,

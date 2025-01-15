@@ -9,16 +9,8 @@
 #include "MPU6050.h"
 #include "MLX90614.h"
 #include "BMP280.h"
-#include "LSM9DS1.h"
 
-#define I2C_NODE DT_NODELABEL(i2c0) // I2C instance
-
-// Calibration parameters
-uint16_t dig_T1;
-int16_t dig_T2, dig_T3;
-uint16_t dig_P1;
-int16_t dig_P2, dig_P3, dig_P4, dig_P5, dig_P6, dig_P7, dig_P8, dig_P9;
-int32_t t_fine;
+#define I2C_NODE DT_NODELABEL(i2c0) 
 
 // Function to write a byte to a register
 int write_register(const struct device *i2c_dev, uint8_t reg_addr, uint8_t data) {
@@ -166,7 +158,7 @@ void bmp280_init(const struct device *i2c_dev) {
         return;
     }
 
-     // Parse calibration data
+    // Parse calibration data
     dig_T1 = (calib_data[1] << 8) | calib_data[0];
     dig_T2 = (calib_data[3] << 8) | calib_data[2];
     dig_T3 = (calib_data[5] << 8) | calib_data[4];
