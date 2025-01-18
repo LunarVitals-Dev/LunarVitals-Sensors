@@ -214,7 +214,7 @@ set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|re
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|interrupts" "4;1;")
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|easydma-maxcnt-bits" "16")
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|clock-frequency" "100000")
-set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|status" "disabled")
+set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|status" "okay")
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|compatible" "nordic,nrf-twi;")
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|wakeup-source" "False")
 set_target_properties(devicetree_target PROPERTIES "DT_PROP|/soc/i2c@40004000|zephyr,pm-device-runtime-auto" "False")

@@ -68,6 +68,8 @@ C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/CMakeFiles/lib__posix.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/CMakeFiles/rebuild_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/getopt/CMakeFiles/edit_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/getopt/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/hash/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/hash/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/os/CMakeFiles/edit_cache.dir
@@ -133,6 +135,12 @@ C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/tracing/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/usb/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/usb/CMakeFiles/rebuild_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/CMakeFiles/edit_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/CMakeFiles/rebuild_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/modules/CMakeFiles/edit_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/modules/CMakeFiles/rebuild_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/backends/CMakeFiles/edit_cache.dir
+C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/backends/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/CMakeFiles/edit_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/CMakeFiles/rebuild_cache.dir
 C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/drivers/disk/CMakeFiles/edit_cache.dir

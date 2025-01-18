@@ -1,4 +1,4 @@
-# Install script for directory: C:/ncs/v2.6.1/zephyr/lib/posix
+# Install script for directory: C:/ncs/v2.6.1/zephyr/subsys/shell
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,6 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/lib/posix/getopt/cmake_install.cmake")
+  include("C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/modules/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jena1/OneDrive/Documents/SchoolProject/Capstone/LunarVitals-Sensors/MPU6050_Accelerometer/build/zephyr/subsys/shell/backends/cmake_install.cmake")
 endif()
 

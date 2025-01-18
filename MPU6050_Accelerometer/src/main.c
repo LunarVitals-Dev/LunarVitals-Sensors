@@ -11,6 +11,7 @@
 #include "BMP280.h"
 
 #define I2C_NODE DT_NODELABEL(i2c0) 
+#define I2C_NODE DT_NODELABEL(i2c1) 
 
 // Function to write a byte to a register
 int write_register(const struct device *i2c_dev, uint8_t reg_addr, uint8_t data) {
@@ -220,22 +221,28 @@ void read_bmp280_data(const struct device *i2c_dev) {
 
 // Main function
 int main(void) {
-    const struct device *i2c_dev = DEVICE_DT_GET(I2C_NODE);
+    const struct device *i2c_dev0 = DEVICE_DT_GET(DT_NODELABEL(i2c0));
+    const struct device *i2c_dev1 = DEVICE_DT_GET(DT_NODELABEL(i2c1));
 
-    if (!device_is_ready(i2c_dev)) {
-        printk("I2C device not ready\n");
+    if (!device_is_ready(i2c_dev0)) {
+        printk("I2C0 device not ready\n");
         return -1;
     }
 
-    mpu6050_init(i2c_dev);
-    bmp280_init(i2c_dev);
+    if (!device_is_ready(i2c_dev1)) {
+        printk("I2C1 device not ready\n");
+        return -1;
+    }
+
+    mpu6050_init(i2c_dev0);
+    bmp280_init(i2c_dev1);
 
     while (1) {
-        read_mpu6050_data(i2c_dev);
-        read_mlx90614_data(i2c_dev);
-        read_bmp280_data(i2c_dev);
+        read_mpu6050_data(i2c_dev0);
+        read_mlx90614_data(i2c_dev0);
+        read_bmp280_data(i2c_dev1);
 
-        k_msleep(3000);  // Delay for 3 second
+        k_msleep(1000);  
     }
 
     return 0;

@@ -156,7 +156,7 @@
 			clock-frequency = < 0x186a0 >;
 			interrupts = < 0x4 0x1 >;
 			easydma-maxcnt-bits = < 0x10 >;
-			status = "disabled";
+			status = "okay";
 			pinctrl-0 = < &i2c1_default >;
 			pinctrl-1 = < &i2c1_sleep >;
 			pinctrl-names = "default", "sleep";

@@ -1192,4 +1192,9 @@ zephyr_udc0: &usbd {
  status = "okay";
 };
 # 0 "<command-line>" 2
+# 1 "./prj.overlay" 1
+&i2c1 {
+    status = "okay";
+};
+# 0 "<command-line>" 2
 # 1 "C:/ncs/v2.6.1/zephyr/misc/empty_file.c"
