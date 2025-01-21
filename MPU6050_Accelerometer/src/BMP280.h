@@ -26,11 +26,7 @@
 #define BMP280_REG_PRESSURE_MSB   0xF7
 #define BMP280_REG_TEMPERATURE_MSB 0xFA
 
-// Calibration parameters
-uint16_t dig_T1;
-int16_t dig_T2, dig_T3;
-uint16_t dig_P1;
-int16_t dig_P2, dig_P3, dig_P4, dig_P5, dig_P6, dig_P7, dig_P8, dig_P9;
-int32_t t_fine;
+void bmp280_init(const struct device *i2c_dev);
+void read_bmp280_data(const struct device *i2c_dev);
 
 #endif

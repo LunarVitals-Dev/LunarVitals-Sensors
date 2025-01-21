@@ -16,4 +16,7 @@
 #define ACCEL_XOUT_H 0x3B
 #define GYRO_XOUT_H  0x43
 
+void mpu6050_init(const struct device *i2c_dev);
+void read_mpu6050_data(const struct device *i2c_dev);
+
 #endif
