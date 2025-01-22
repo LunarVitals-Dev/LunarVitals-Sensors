@@ -1,0 +1,16 @@
+{
+    "nrf-connect.applications": [
+        "${workspaceFolder}\\GY-521(MPU-6050)"
+    ],
+    "files.associations": {
+        "kernel.h": "c",
+        "kernel_includes.h": "c",
+        "syscall.h": "c",
+        "i2c.h": "c",
+        "device.h": "c",
+        "rtio.h": "c",
+        "slist.h": "c",
+        "devicetree.h": "c",
+        "printk.h": "c"
+    }
+}

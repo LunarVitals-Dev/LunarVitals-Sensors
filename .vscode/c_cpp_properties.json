@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Zephyr",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/ncs/v2.7.0/zephyr/include",
+                "C:/ncs/v2.7.0/zephyr/arch/arm/include",
+                "C:/ncs/v2.7.0/zephyr/subsys/testsuite/include",
+                "C:/ncs/v2.7.0/zephyr/drivers",
+                "C:/ncs/v2.7.0/zephyr/boards/nordic/nrf52840dk"
+            ],
+            "defines": [
+                "CONFIG_BOARD_NRF52840_PCA10056"
+            ],
+            
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "gcc-arm"
+        }
+    ],
+    "version": 4
+}
