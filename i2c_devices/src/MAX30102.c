@@ -1,15 +1,3 @@
-/*
-    * MAX30102.h
-    *
-    *  Created on: 2020. 12. 10.
-    * 
-    * This file was created to interface with the MAX30102 pulse oximeter sensor
-    * It uses algorithms developed by Nathan Seidle of Sparkfun Electronics as 
-    * adapted in `heart_rate.c/h` and `spo2_algorithm.c/h`.
-    * 
-    * TODO: need to clean this up and add more functionality
-*/
-
 #include "MAX30102.h"
 #include "i2c.h"
 #include "heart_rate.h"
@@ -96,11 +84,6 @@ void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8
 	d_i2c_write_byte(dev_max30102, MAX30102_FIFO_RD_PTR, 0x00);
 }
 
-/*
- * @brief Get the data from the pulse oximeter
- * @return The number of samples read
- * TODO: need to implement this better - it currently only reads one sample
- */
 int max30102_get_data(const struct i2c_dt_spec *dev_max30102)
 {
     // uint8_t read_ptr, write_ptr, ovf_ctr;
@@ -147,18 +130,21 @@ int max30102_get_data(const struct i2c_dt_spec *dev_max30102)
 	return 6;
 }
 
+// Global Variables
+double beatsPerMinute = 0;
+double beatAvg = 0;
+
 int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
 {
     const uint8_t RATE_SIZE = 4; //Increase this for more averaging. 4 is good.
 	uint8_t rates[RATE_SIZE]; //Array of heart rates
 	uint8_t rateSpot = 0;
 	long lastBeat = 0; //Time at which the last beat occurred
-
-	double beatsPerMinute = 0;
-	double beatAvg = 0;
+	
 
 	if (max30102_get_data(dev_max30102) == 0){
 		printk("No data\n");
+		return -1;  // Return error code when no data
 	} else {
 		long irVal = sensor_data.ir[sensor_data.head_ptr];
 
@@ -181,6 +167,16 @@ int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
 			}
 		}
 
-		printk(">Red:%d,IR:%d,BPM:%f,AvgBPM:%f\n", sensor_data.red[sensor_data.head_ptr], sensor_data.ir[sensor_data.head_ptr], beatsPerMinute, beatAvg);
+		//printk(">Red:%d,IR:%d,BPM:%.2f,AvgBPM:%.2f\n", sensor_data.red[sensor_data.head_ptr], sensor_data.ir[sensor_data.head_ptr], beatsPerMinute, beatAvg);
 	}
+	return 0;
+}
+
+void max30102_print_data(void)
+{
+    printk(">Red:%d, IR:%d, BPM:%.2f, AvgBPM:%.2f\n",
+           sensor_data.red[sensor_data.head_ptr],
+           sensor_data.ir[sensor_data.head_ptr],
+           beatsPerMinute,
+           beatAvg);
 }

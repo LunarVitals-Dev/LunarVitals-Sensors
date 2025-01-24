@@ -19,12 +19,26 @@ static const struct i2c_dt_spec dev_max30102 = MAX30102_DT_SPEC;
 
 int main(void) {
     i2c_init();
-	max30102_default_setup(&dev_max30102);
-	
+    max30102_default_setup(&dev_max30102);
+
+    int ms_counter = 0; // Millisecond counter
+
     while (1) {
-        i2c_read_data();
+        // Read MAX30102 data every millisecond
         max30102_read_data(&dev_max30102);
-        k_msleep(1000);  
+        k_msleep(10);  // 1 ms delay
+
+        // Increment the millisecond counter
+        ms_counter += 1;
+
+        // Every second, print the accumulated data
+        if (ms_counter >= 200) {
+            ms_counter = 0; // Reset counter
+            i2c_read_data();  // Read and print other sensors
+            max30102_print_data();  // Print MAX30102 data
+        }
     }
+
     return 0;
 }
+

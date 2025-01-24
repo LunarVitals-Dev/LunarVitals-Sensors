@@ -15,7 +15,7 @@
 // 3Vo --> VDD
 // GND --> GND
 
-#define BMP280_ADDR 0x76  // Adjust to 0x77 if SDO pin is high
+#define BMP280_ADDR 0x77  // Adjust to 0x77 if SDO pin is high
 
 // BMP280 Register Addresses
 #define BMP280_REG_CALIB_START    0x88

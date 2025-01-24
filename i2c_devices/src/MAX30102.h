@@ -50,5 +50,6 @@ void max30102_default_setup(const struct i2c_dt_spec *dev_max30102);
 void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8_t sample_avg, bool fifo_rollover, uint8_t fifo_int_threshold, MAX30102_mode_t mode, int sample_rate, int pulse_width, int adc_range);
 int max30102_get_data(const struct i2c_dt_spec *dev_max30102);
 int max30102_read_data(const struct i2c_dt_spec *dev_max30102);
+void max30102_print_data(void);
 
 #endif 
