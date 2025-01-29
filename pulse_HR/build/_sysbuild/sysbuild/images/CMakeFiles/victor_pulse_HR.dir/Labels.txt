@@ -1,0 +1,13 @@
+# Target labels
+ victor_pulse_HR
+# Source files and their labels
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/victor_pulse_HR
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/victor_pulse_HR.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/victor_pulse_HR-complete.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-build.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-configure.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-download.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-install.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-mkdir.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-patch.rule
+/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/victor_pulse_HR-prefix/src/victor_pulse_HR-stamp/victor_pulse_HR-update.rule

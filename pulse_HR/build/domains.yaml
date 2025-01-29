@@ -1,0 +1,7 @@
+default: victor_pulse_HR
+build_dir: /Users/owner/victor_pulse_HR/build
+domains:
+  - name: victor_pulse_HR
+    build_dir: /Users/owner/victor_pulse_HR/build/victor_pulse_HR
+flash_order:
+  - victor_pulse_HR
