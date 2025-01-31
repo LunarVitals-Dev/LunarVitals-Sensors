@@ -25,7 +25,7 @@ int main(void) {
         i2c_read_data();  // Read and print other sensors
         // max30102_print_data();  // Print MAX30102 data
         // sleep for 0.1 seconds
-        k_sleep(K_MSEC(500));
+        k_sleep(K_MSEC(100));
     }
 
     return 0;

@@ -58,8 +58,8 @@ static void process_step_detection(float accel_x, float accel_y, float accel_z, 
     // Get current time in milliseconds
     uint32_t current_time = k_uptime_get_32();
 
-    printk("Magnitude: %f\n", magnitude);
-    printk("Moving Average: %f\n", step_counter.moving_average);
+    // printk("Magnitude: %f\n", magnitude);
+    // printk("Moving Average: %f\n", step_counter.moving_average);
     
     // Detect step using peak detection and gyroscope data
     if (magnitude > STEP_THRESHOLD && 
@@ -69,7 +69,7 @@ static void process_step_detection(float accel_x, float accel_y, float accel_z, 
         (current_time - step_counter.last_step_time) > STEP_COOLDOWN_MS) {
         step_counter.step_count++;
         step_counter.last_step_time = current_time;
-        printk("Step detected! Total steps: %d\n", step_counter.step_count);
+        printk("Total steps: %d\n", step_counter.step_count);
     }
     
     step_counter.buffer_index = (step_counter.buffer_index + 1) % WINDOW_SIZE;
