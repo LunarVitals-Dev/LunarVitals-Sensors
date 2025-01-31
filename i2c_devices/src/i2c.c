@@ -35,13 +35,13 @@ void i2c_init(void) {
     }
 
     mpu6050_init(i2c_dev0);
-    bmp280_init(i2c_dev1);
+    // bmp280_init(i2c_dev1);
 }
 
 void i2c_read_data(void) {
     read_mpu6050_data(i2c_dev0);
-    read_mlx90614_data(i2c_dev0);
-    read_bmp280_data(i2c_dev1);
+    // read_mlx90614_data(i2c_dev0);
+    // read_bmp280_data(i2c_dev1);
 }
 
 bool d_i2c_is_ready(const struct i2c_dt_spec *i2c_dev) {
