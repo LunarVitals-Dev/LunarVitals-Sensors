@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR-complete.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-build.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-configure.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-download.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-install.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-mkdir.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-patch.rule"
+		},
+		{
+			"file" : "/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"pulse_HR"
+		],
+		"name" : "pulse_HR"
+	}
+}

@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/_sysbuild/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/owner/victor_pulse_HR/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/owner/LunarVitals-Sensors/pulse_HR/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

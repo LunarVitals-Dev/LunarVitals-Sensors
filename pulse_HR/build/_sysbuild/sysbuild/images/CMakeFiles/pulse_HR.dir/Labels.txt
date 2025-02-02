@@ -1,0 +1,13 @@
+# Target labels
+ pulse_HR
+# Source files and their labels
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/CMakeFiles/pulse_HR-complete.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-build.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-configure.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-download.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-install.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-mkdir.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-patch.rule
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/pulse_HR-prefix/src/pulse_HR-stamp/pulse_HR-update.rule

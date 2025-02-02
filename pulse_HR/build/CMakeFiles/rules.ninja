@@ -23,7 +23,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /opt/nordic/ncs/toolchains/15b490767d/Cellar/cmake/3.21.0/bin/cmake --regenerate-during-build -S/opt/nordic/ncs/v2.8.0/zephyr/share/sysbuild -B/Users/owner/victor_pulse_HR/build
+  command = /opt/nordic/ncs/toolchains/15b490767d/Cellar/cmake/3.21.0/bin/cmake --regenerate-during-build -S/opt/nordic/ncs/v2.8.0/zephyr/share/sysbuild -B/Users/owner/LunarVitals-Sensors/pulse_HR/build
   description = Re-running CMake...
   generator = 1
 

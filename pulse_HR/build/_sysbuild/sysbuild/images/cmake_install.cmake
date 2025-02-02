@@ -34,26 +34,26 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/bootloader/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/bootloader/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/modules/nrf/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/modules/nrf/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/modules/mcuboot/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/modules/mcuboot/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/boards/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/boards/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/owner/victor_pulse_HR/build/_sysbuild/sysbuild/images/soc/cmake_install.cmake")
+  include("/Users/owner/LunarVitals-Sensors/pulse_HR/build/_sysbuild/sysbuild/images/soc/cmake_install.cmake")
 endif()
 

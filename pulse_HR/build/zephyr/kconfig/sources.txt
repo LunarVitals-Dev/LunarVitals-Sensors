@@ -1,8 +1,8 @@
-/Users/owner/victor_pulse_HR/build/Kconfig/Kconfig.sysbuild.modules
-/Users/owner/victor_pulse_HR/build/Kconfig/boards/Kconfig.nrf52840dk
-/Users/owner/victor_pulse_HR/build/Kconfig/boards/Kconfig.sysbuild
-/Users/owner/victor_pulse_HR/build/Kconfig/soc/Kconfig.soc
-/Users/owner/victor_pulse_HR/build/Kconfig/soc/Kconfig.sysbuild
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/Kconfig/Kconfig.sysbuild.modules
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/Kconfig/boards/Kconfig.nrf52840dk
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/Kconfig/boards/Kconfig.sysbuild
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/Kconfig/soc/Kconfig.soc
+/Users/owner/LunarVitals-Sensors/pulse_HR/build/Kconfig/soc/Kconfig.sysbuild
 /opt/nordic/ncs/v2.8.0/nrf/sysbuild/Kconfig.appcore
 /opt/nordic/ncs/v2.8.0/nrf/sysbuild/Kconfig.approtect
 /opt/nordic/ncs/v2.8.0/nrf/sysbuild/Kconfig.bt_fast_pair
