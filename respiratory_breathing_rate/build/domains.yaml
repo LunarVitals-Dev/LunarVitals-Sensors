@@ -1,0 +1,7 @@
+default: victor_chest_monitor
+build_dir: /Users/owner/victor_chest_monitor/build
+domains:
+  - name: victor_chest_monitor
+    build_dir: /Users/owner/victor_chest_monitor/build/victor_chest_monitor
+flash_order:
+  - victor_chest_monitor
