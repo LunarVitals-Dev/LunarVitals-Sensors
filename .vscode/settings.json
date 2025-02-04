@@ -11,6 +11,8 @@
         "rtio.h": "c",
         "slist.h": "c",
         "devicetree.h": "c",
-        "printk.h": "c"
+        "printk.h": "c",
+        "gpio.h": "c",
+        "limits": "c"
     }
 }

@@ -39,7 +39,10 @@ typedef enum{
 
 void max30102_default_setup(const struct i2c_dt_spec *dev_max30102);
 void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8_t sample_avg, bool fifo_rollover, uint8_t fifo_int_threshold, MAX30102_mode_t mode, int sample_rate, int pulse_width, int adc_range);
-int max30102_get_data(const struct i2c_dt_spec *dev_max30102);
-int max30102_read_data(const struct i2c_dt_spec *dev_max30102);
+int max30102_check(const struct i2c_dt_spec *dev_max30102);
+int max30102_read_data_hr(const struct i2c_dt_spec *dev_max30102);
+int max30102_read_data_spo2(const struct i2c_dt_spec *dev_max30102, const struct gpio_dt_spec *led0);
+
+int gpio_led_setup(const struct gpio_dt_spec *led0);
 
 #endif 

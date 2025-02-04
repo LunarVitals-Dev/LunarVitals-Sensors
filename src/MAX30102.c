@@ -209,43 +209,65 @@ void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8
  * @return The number of samples read
  * TODO: need to implement this better - it currently only reads one sample
  */
-int max30102_get_data(const struct i2c_dt_spec *dev_max30102)
+int max30102_check(const struct i2c_dt_spec *dev_max30102)
 {
-    // uint8_t read_ptr, write_ptr, ovf_ctr;
-	// read_register(&dev_i2c0, 0x04, &read_ptr);
-	// read_register(&dev_i2c0, 0x05, &ovf_ctr);
-	// read_register(&dev_i2c0, 0x06, &write_ptr);
-
-	// if (read_ptr == write_ptr) {
-	// 	printk("FIFO is empty\n");
-	// 	printk("Read pointer: %d, Write pointer: %d, Overflow counter: %d\n", read_ptr, write_ptr, ovf_ctr);
+	bool ret;
+    // uint8_t write_ptr, read_ptr, ovf_ctr;
+	// bool ret = d_i2c_read_register(dev_max30102, MAX30102_FIFO_WR_PTR, &write_ptr);
+	// ret &= d_i2c_read_register(dev_max30102, MAX30102_FIFO_RD_PTR, &read_ptr);
+	// ret &= d_i2c_read_register(dev_max30102, MAX30102_FIFO_O_CNTR, &ovf_ctr);
+	// if (ret == false) {
+	// 	printk("Failed to read FIFO pointers\n");
 	// 	return 0;
-	// } else {
-	// 	printk("FIFO is not empty\n");
-	// 	printk("Read pointer: %d, Write pointer: %d, Overflow counter: %d\n", read_ptr, write_ptr, ovf_ctr);
-	// 	int num_samples_to_read = (write_ptr - read_ptr) & 0x1F; // mask to get the lower 5 bits of the difference
+	// }
+	// printk("Rdptr: %d, Wrptr: %d, Ocntr: %d\n", read_ptr, write_ptr, ovf_ctr);
 
-	// 	// know the number of samples we need to read
-	// 	int num_bytes_to_read = num_samples_to_read * 6; // 3 bytes for red and 3 bytes for ir for each sample
+	// int number_of_samples = 0;
 
-	// 	// prepare to read data from the fifo buffer address many times
+	// if (read_ptr != write_ptr) {
+	// 	// printk("Read pointer: %d, Write pointer: %d, Overflow counter: %d\n", read_ptr, write_ptr, ovf_ctr);
+	// 	// int num_samples_to_read = (write_ptr - read_ptr) & 0x1F; // mask to get the lower 5 bits of the difference
+	// 	number_of_samples = (write_ptr - read_ptr);
+	// 	if (number_of_samples < 0) number_of_samples += 32;
+
+	// 	// use i2c write and read as separate functions
+	// 	// we will burst read data based on the number of samples we expect
+	// 	// d_i2c_write(dev_max30102, MAX30102_FIFO_DATA, 1);
+
+	// 	// while (number_of_samples > 0) {
+	// 	// 	sensor_data.head_ptr++;
+	// 	// 	sensor_data.head_ptr %= DATA_BUFFER_SIZE;
+
+	// 	// 	uint8_t temp[sizeof(uint32_t)];
+	// 	// 	uint32_t red, ir;
+
+	// 	// 	// read red data
+	// 	// 	d_i2c_read(dev_max30102, )
+
+	// 	// }
 
 
-	// 	uint8_t data[num_bytes_to_read];
-	// 	read_registers(&dev_i2c0, 0x07, data, num_bytes_to_read);
+	// // 	// know the number of samples we need to read
+	// // 	int num_bytes_to_read = num_samples_to_read * 6; // 3 bytes for red and 3 bytes for ir for each sample
 
-	// 	for (int i = 0; i < num_bytes_to_read; i += 6) {
-	// 		sensor_data.head_ptr ++;
-	// 		sensor_data.head_ptr %= DATA_BUFFER_SIZE;
+	// // 	// prepare to read data from the fifo buffer address many times
+
+
+	// // 	uint8_t data[num_bytes_to_read];
+	// // 	read_registers(&dev_i2c0, 0x07, data, num_bytes_to_read);
+
+	// // 	for (int i = 0; i < num_bytes_to_read; i += 6) {
+	// // 		sensor_data.head_ptr ++;
+	// // 		sensor_data.head_ptr %= DATA_BUFFER_SIZE;
 			
-	// 		sensor_data.red[sensor_data.head_ptr] = ((data[i] << 16) | (data[i + 1] << 8) | data[i + 2]) & 0x3FFFF;
-	// 		sensor_data.ir[sensor_data.head_ptr] = ((data[i + 3] << 16) | (data[i + 4] << 8) | data[i + 5]) & 0x3FFFF;
-	// 	}
-	// 	return num_samples_to_read;
+	// // 		sensor_data.red[sensor_data.head_ptr] = ((data[i] << 16) | (data[i + 1] << 8) | data[i + 2]) & 0x3FFFF;
+	// // 		sensor_data.ir[sensor_data.head_ptr] = ((data[i + 3] << 16) | (data[i + 4] << 8) | data[i + 5]) & 0x3FFFF;
+	// // 	}
+	// // 	return num_samples_to_read;
 	// }
 
 	uint8_t data[6];
-	bool ret = d_i2c_read_registers(dev_max30102, 0x07, data, 6);
+	ret = d_i2c_read_registers(dev_max30102, 0x07, data, 6);
 	if (ret == true){
 		sensor_data.head_ptr ++;
 		sensor_data.head_ptr %= DATA_BUFFER_SIZE;	
@@ -255,7 +277,7 @@ int max30102_get_data(const struct i2c_dt_spec *dev_max30102)
 	return 6;
 }
 
-int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
+int max30102_read_data_hr(const struct i2c_dt_spec *dev_max30102)
 {
     const uint8_t RATE_SIZE = 4; //Increase this for more averaging. 4 is good.
 	uint8_t rates[RATE_SIZE]; //Array of heart rates
@@ -266,7 +288,7 @@ int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
 	double beatAvg = 0;
 
 	while(true){
-		if (max30102_get_data(dev_max30102) == 0){
+		if (max30102_check(dev_max30102) == 0){
 			printk("No data\n");
 		} else {
 			long irVal = sensor_data.ir[sensor_data.head_ptr];
@@ -275,7 +297,7 @@ int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
     			//We sensed a beat!
     			long delta = k_uptime_get() - lastBeat;
     			lastBeat = k_uptime_get();
-			
+				printk("Delta: %ld\n", delta);
     			beatsPerMinute = 60 / (delta / 1000.0);
 			
     			if (beatsPerMinute < 255 && beatsPerMinute > 20) {
@@ -293,6 +315,92 @@ int max30102_read_data(const struct i2c_dt_spec *dev_max30102)
 			printk(">Red:%d,IR:%d,BPM:%f,AvgBPM:%f\n", sensor_data.red[sensor_data.head_ptr], sensor_data.ir[sensor_data.head_ptr], beatsPerMinute, beatAvg);
 		}
 		k_sleep(K_MSEC(10));
+	}
+}
+
+#define BUFFERLENGTH 100
+
+int bufferLength = BUFFERLENGTH; //buffer length of 100 stores 4 seconds of samples running at 25sps
+int spo2 = 0;
+int heartRate = 0;
+int8_t validSPO2 = 0; //indicator to show if the SPO2 calculation is valid
+int8_t validHeartRate = 0; //indicator to show if the heart rate calculation is valid
+
+uint32_t irBuffer[BUFFERLENGTH]; // infrared LED sensor data
+uint32_t redBuffer[BUFFERLENGTH]; // red LED sensor data
+
+int gpio_led_setup(const struct gpio_dt_spec *led0) {
+	if(!gpio_is_ready_dt(led0)) printk("GPIO is not ready\n");
+	int ret = gpio_pin_configure_dt(led0, GPIO_OUTPUT);
+	if (ret < 0) {
+		printk("Failed to configure LED0\n");
+		return -1;
+	}
+	return 0;
+}
+
+int gpio_led_toggle(const struct gpio_dt_spec *led0) {
+	int ret = gpio_pin_toggle_dt(led0);
+	if (ret < 0) {
+		printk("Failed to toggle LED0\n");
+		return -1;
+	}
+	return 0;
+}
+
+int max30102_available(void)
+{
+	int numSamples = sensor_data.head_ptr - sensor_data.tail_ptr;
+	if (numSamples < 0) numSamples += DATA_BUFFER_SIZE;
+	return numSamples;
+}
+
+void max30102_next_sample(void)
+{
+	if(max30102_available() > 0){
+		sensor_data.tail_ptr++;
+		sensor_data.tail_ptr %= DATA_BUFFER_SIZE;
+	}
+}
+
+int max30102_read_data_spo2(const struct i2c_dt_spec * dev_max30102, const struct gpio_dt_spec * led0)
+{
+	for(int i = 0; i < bufferLength; i++)
+	{
+		while(max30102_available() == 0) max30102_check(dev_max30102);
+
+		redBuffer[i] = sensor_data.red[sensor_data.head_ptr];
+		irBuffer[i] = sensor_data.ir[sensor_data.head_ptr];
+		max30102_next_sample();
+
+		printk(">red=%d, ir=%d\n", redBuffer[i], irBuffer[i]);
+	}
+
+	//calculate heart rate and SpO2 after first 100 samples (first 4 seconds of samples)
+	maxim_heart_rate_and_oxygen_saturation(irBuffer, bufferLength, redBuffer, &spo2, &validSPO2, &heartRate, &validHeartRate);
+
+	while(1)
+	{
+		for(int i = 25; i < bufferLength; i++)
+		{
+			redBuffer[i-25] = redBuffer[i];
+			irBuffer[i-25] = irBuffer[i];
+		}
+
+		for(int i = 75; i < bufferLength; i++)
+		{
+			while(max30102_available() == 0) max30102_check(dev_max30102);
+
+			gpio_led_toggle(led0);
+
+			redBuffer[i] = sensor_data.red[sensor_data.head_ptr];
+			irBuffer[i] = sensor_data.ir[sensor_data.head_ptr];
+			max30102_next_sample();
+
+			printk(">red:%d,ir:%d,HR:%d,HRvalid:%d,SPO2:%d,SPO2Valid:%d\n", redBuffer[i], irBuffer[i], heartRate, validHeartRate, spo2, validSPO2);
+		}
+
+		maxim_heart_rate_and_oxygen_saturation(irBuffer, bufferLength, redBuffer, &spo2, &validSPO2, &heartRate, &validHeartRate);
 	}
 }
 

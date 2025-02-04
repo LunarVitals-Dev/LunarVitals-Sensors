@@ -10,12 +10,14 @@
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/i2c.h>
+#include <zephyr/drivers/gpio.h>
 
 #include "i2c_device.h"
 #include "MAX30102.h"
 #include "heart_rate.h"
 
 static const struct i2c_dt_spec dev_max30102 = MAX30102_DT_SPEC;
+static const struct gpio_dt_spec led0 = LED0_DT_SPEC;
 
 // static char last_byte;
 
@@ -264,7 +266,9 @@ int main(void)
 
 	max30102_default_setup(&dev_max30102);
 
-	max30102_read_data(&dev_max30102);
+	max30102_read_data_hr(&dev_max30102);
+
+	//max30102_read_data_spo2(&dev_max30102, &led0);
 
 	// const uint8_t RATE_SIZE = 4; //Increase this for more averaging. 4 is good.
 	// uint8_t rates[RATE_SIZE]; //Array of heart rates
