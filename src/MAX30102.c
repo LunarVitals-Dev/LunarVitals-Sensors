@@ -13,13 +13,27 @@
 #include "MAX30102.h"
 #include "i2c_device.h"
 #include "heart_rate.h"
+#include "spo2_algorithm.h"
+
+static const uint8_t MAX30102_FIFO_CONFIG        = 0x08;
+static const uint8_t MAX30102_MODE_CONFIG        = 0x09;
+static const uint8_t MAX30102_SPO2_CONFIG        = 0x0A;
+static const uint8_t MAX30102_LED1_PA            = 0x0C;
+static const uint8_t MAX30102_LED2_PA            = 0x0D;
+static const uint8_t MAX30102_MULTI_LED_CONFIG1  = 0x11;
+static const uint8_t MAX30102_MULTI_LED_CONFIG2  = 0x12;
+
+static const uint8_t MAX30102_FIFO_WR_PTR        = 0x04;
+static const uint8_t MAX30102_FIFO_O_CNTR        = 0x05;
+static const uint8_t MAX30102_FIFO_RD_PTR        = 0x06;
+static const uint8_t MAX30102_FIFO_DATA          = 0x07;
 
 //static const struct i2c_dt_spec max30102_dev = MAX30102_DT_SPEC;
 static sensor_struct sensor_data;
 
 void max30102_default_setup(const struct i2c_dt_spec *dev_max30102)
 {
-    max30102_pulse_oximeter_setup(dev_max30102, 4, false, 4, MULTI_LED, 50, 69, 16384);
+    max30102_pulse_oximeter_setup(dev_max30102, 1, false, 15, SPO2, 100, 441, 4096);
 }
 
 /*
@@ -32,7 +46,8 @@ void max30102_default_setup(const struct i2c_dt_spec *dev_max30102)
  * @param pulse_width The pulse width of the LED. Must be one of 69, 118, 215, 411 - default 69
  * @param adc_range The range of the ADC. Must be one of 2048, 4096, 8192, 16384 - default 16384
  */
-void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8_t sample_avg, bool fifo_rollover, uint8_t fifo_int_threshold, MAX30102_mode_t mode, int sample_rate, int pulse_width, int adc_range)
+void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8_t sample_avg, bool fifo_rollover, 
+		uint8_t fifo_int_threshold, MAX30102_mode_t mode, int sample_rate, int pulse_width, int adc_range)
 {
     uint8_t address, data;
 
@@ -44,42 +59,135 @@ void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8
     // reset the device
     address = MAX30102_MODE_CONFIG;
     data = 0x40; // x_1_xxx_xxx
-    if (d_i2c_write_byte(dev_max30102, address, data) == false) {
+    if (d_i2c_write_to_reg(dev_max30102, address, data) == false) {
 		printk("Failed to reset device\n");
 		return;
 	}
 
-    // switch(sample_avg){
-	// 	case 1:
-	// 		data = 0x00; // 000_x_0000
-	// 		break;
-	// }
-
-	// // sample avg = 4, rollover disabled, almost full = 17 // 010_0_1111
+	// set the sample average (SMP_AVE) and FIFO rollover (FIFO_ROLLOVER_EN) and FIFO interrupt threshold (FIFO_A_FULL)
 	address = MAX30102_FIFO_CONFIG;
-	data = 0x0F; // 001_0_1111
-	d_i2c_write_byte(dev_max30102, address, data);
+	data = 0x00;
+    switch(sample_avg){
+		case 1:
+			data |= 0x00; // 000_x_xxxx
+			break;
+		case 2:
+			data |= 0x20; // 001_x_xxxx
+			break;
+		case 4:
+			data |= 0x40; // 010_x_xxxx
+			break;
+		case 8:
+			data |= 0x60; // 011_x_xxxx
+			break;
+		case 16:
+			data |= 0x80; // 100_x_xxxx
+			break;
+		case 32:
+			data |= 0xA0; // 101_x_xxxx
+			break;
+		default:
+			data |= 0x40; // 010_x_xxxx
+			break;
+	}
+	switch(fifo_rollover){
+		case true:
+			data |= 0x10; // xxx_1_xxxx
+			break;
+		case false:
+			data |= 0x00; // xxx_0_xxxx
+			break;
+	}
+	data |= (fifo_int_threshold & 0x0F); // xxx_x_DDDD
+	d_i2c_write_to_reg(dev_max30102, address, data);
 
+	//mode = heart rate // 0_0_xxx_010
 	//mode = multi led // 0_0_xxx_111
 	//mode = sp02 // 0_0_xxx_011
 	address = MAX30102_MODE_CONFIG;
-	data = 0x03; 
-	d_i2c_write_byte(dev_max30102, address, data);
+	data = mode & 0x07; // 0_0_000_111 
+	d_i2c_write_to_reg(dev_max30102, address, data);
 
 	//adc range = 16384, sample rate = 50, pulse width = 69 // x11_000_00
 	//SP02 ADC = 4096, sample rate = 100, pulse width = 411 // x01_001_11
+
 	address = MAX30102_SPO2_CONFIG;
-	data = 0x27; 
-	d_i2c_write_byte(dev_max30102, address, data);
+	data = 0x00;
+	switch(adc_range){
+		case 2048:
+			data |= 0x00; // x_00_xxx_xx
+			break;
+		case 4096:
+			data |= 0x20; // x_01_xxx_xx
+			break;
+		case 8192:
+			data |= 0x40; // x_10_xxx_xx
+			break;
+		case 16384:
+			data |= 0x60; // x_11_xxx_xx
+			break;
+		default:
+			data |= 0x60; // x_11_xxx_xx
+			break;
+	}
+
+	switch(sample_rate){
+		case 50:
+			data |= 0x00; // x_xx_000_xx
+			break;
+		case 100:
+			data |= 0x04; // x_xx_001_xx
+			break;
+		case 200:
+			data |= 0x08; // x_xx_010_xx
+			break;
+		case 400:
+			data |= 0x0C; // x_xx_011_xx
+			break;
+		case 800:
+			data |= 0x10; // x_xx_100_xx
+			break;
+		case 1000:
+			data |= 0x14; // x_xx_101_xx
+			break;
+		case 1600:
+			data |= 0x18; // x_xx_110_xx
+			break;
+		case 3200:
+			data |= 0x1C; // x_xx_111_xx
+			break;
+		default:
+			data |= 0x00; // x_xx_000_xx
+			break;
+	}
+	switch(pulse_width){
+		case 69:
+			data |= 0x00; // x_xx_xxx_00
+			break;
+		case 118:
+			data |= 0x01; // x_xx_xxx_01
+			break;
+		case 215:
+			data |= 0x02; // x_xx_xxx_10
+			break;
+		case 411:
+			data |= 0x03; // x_xx_xxx_11
+			break;
+		default:
+			data |= 0x00; // x_xx_xxx_00
+			break;
+
+	}
+	d_i2c_write_to_reg(dev_max30102, address, data);
 	
 	// set power level to 6.2mA (0x1F)
 	address = MAX30102_LED1_PA;
 	data = 0x1F;
-	d_i2c_write_byte(dev_max30102, address, data);
+	d_i2c_write_to_reg(dev_max30102, address, data);
 
 	address = MAX30102_LED2_PA;
 	data = 0x1F;
-	d_i2c_write_byte(dev_max30102, address, data);
+	d_i2c_write_to_reg(dev_max30102, address, data);
 
 	// // multi_led control registers
 	// address = 0x11; 
@@ -91,9 +199,9 @@ void max30102_pulse_oximeter_setup(const struct i2c_dt_spec *dev_max30102, uint8
 	// write_byte(address, data);
 
 	// clear fifo
-	d_i2c_write_byte(dev_max30102, MAX30102_FIFO_WR_PTR, 0x00);
-	d_i2c_write_byte(dev_max30102, MAX30102_FIFO_O_CNTR, 0x00);
-	d_i2c_write_byte(dev_max30102, MAX30102_FIFO_RD_PTR, 0x00);
+	d_i2c_write_to_reg(dev_max30102, MAX30102_FIFO_WR_PTR, 0x00);
+	d_i2c_write_to_reg(dev_max30102, MAX30102_FIFO_O_CNTR, 0x00);
+	d_i2c_write_to_reg(dev_max30102, MAX30102_FIFO_RD_PTR, 0x00);
 }
 
 /*

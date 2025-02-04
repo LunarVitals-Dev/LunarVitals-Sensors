@@ -15,22 +15,13 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/i2c.h>
+#include <zephyr/drivers/gpio.h>
+
+#define LED0_NODE DT_ALIAS(led0)
+#define LED0_DT_SPEC GPIO_DT_SPEC_GET(LED0_NODE, gpios)
 
 #define MAX30102_NODE DT_NODELABEL(max30102)
 #define MAX30102_DT_SPEC I2C_DT_SPEC_GET(MAX30102_NODE)
-
-#define MAX30102_FIFO_CONFIG        0x08
-#define MAX30102_MODE_CONFIG        0x09
-#define MAX30102_SPO2_CONFIG        0x0A
-#define MAX30102_LED1_PA            0x0C
-#define MAX30102_LED2_PA            0x0D
-#define MAX30102_MULTI_LED_CONFIG1  0x11
-#define MAX30102_MULTI_LED_CONFIG2  0x12
-
-#define MAX30102_FIFO_WR_PTR        0x04
-#define MAX30102_FIFO_O_CNTR        0x05
-#define MAX30102_FIFO_RD_PTR        0x06
-#define MAX30102_FIFO_DATA          0x07
 
 #define DATA_BUFFER_SIZE 32
 typedef struct buffer {
